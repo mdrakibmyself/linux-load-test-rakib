@@ -1,0 +1,9 @@
+#!/bin/bash
+# Replace "bgdsvc_yourname" below with your ACTUAL chosen name (typed literally).
+SVC_NAME="bgdsvc_yourname"
+TMPDIR="/mnt/${SVC_NAME}_tmp"
+LOGFILE="/var/log/${SVC_NAME}/monitor.log"
+
+# Remove test files older than 1 day so scratch space doesn't fill with stale runs
+find "$TMPDIR" -type f -mtime +1 -delete
+echo "$(date): cleanup run — removed files older than 1 day from $TMPDIR" >> "$LOGFILE"
